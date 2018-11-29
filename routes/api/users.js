@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const router = express.Router();
 
+const passport = require("passport");
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
 //@route   api/users/test
 //@desc    Test users route
 //@access  public
@@ -15,6 +19,13 @@ router.get("/test", (req, res) => res.json({ msg: "User Works!" }));
 //@desc    Register User
 //@access  public
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+  //check validation
+  if (!isValid) {
+    console.log(isValid);
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email Already Exists." });
@@ -49,11 +60,18 @@ router.post("/register", (req, res) => {
 //@desc    Login User / Returning JWT Token
 //@access  public
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  //check validation
+  if (!isValid) {
+    console.log(isValid);
+    return res.status(400).json(errors);
+  }
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email }).then(user => {
     if (!user) {
-      return res.status(400).json({ email: "User not found!" });
+      errors.email = "User not found";
+      return res.status(400).json(errors);
     }
     //compare password
     bcrypt.compare(password, user.password).then(isMatch => {
@@ -72,10 +90,23 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ msg: "password incorrect" });
+        errors.password = "Password incorrect";
+        return res.status(400).json(errors);
       }
     });
   });
 });
+
+//@route   api/users/current
+//@desc    Return current user
+//@access  private
+
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 module.exports = router;
