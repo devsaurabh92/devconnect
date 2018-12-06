@@ -9,7 +9,7 @@ const passport = require("passport");
 const app = express();
 
 //body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })).use(bodyParser.json());
 //DB Config
 const db = require("./config/keys").mongoURI;
 mongoose
