@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+//import classNames from "classnames";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
   constructor() {
@@ -54,6 +55,40 @@ class Register extends Component {
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">Create your Developer account</p>
               <form action="create-profile.html" onSubmit={this.onSubmit}>
+                <TextFieldGroup
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  error={this.state.errors.name}
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+                <TextFieldGroup
+                  placeholder="Email Address"
+                  type="email"
+                  name="email"
+                  error={this.state.errors.email}
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
+                <TextFieldGroup
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  error={this.state.errors.password}
+                  value={this.state.password}
+                  onChange={this.onChange}
+                />
+
+                <TextFieldGroup
+                  placeholder="Confirm Password"
+                  type="password"
+                  name="password2"
+                  error={this.state.errors.password2}
+                  value={this.state.password2}
+                  onChange={this.onChange}
+                />
+                {/*}
                 <div className="form-group">
                   <input
                     type="text"
@@ -66,6 +101,7 @@ class Register extends Component {
                     value={this.state.name}
                     onChange={this.onChange}
                   />
+
                   {this.state.errors.name && (
                     <div className="invalid-feedback">
                       {this.state.errors.name}
@@ -130,6 +166,7 @@ class Register extends Component {
                     </div>
                   )}
                 </div>
+                {*/}
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
