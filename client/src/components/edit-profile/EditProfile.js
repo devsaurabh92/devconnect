@@ -7,6 +7,7 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -39,6 +40,48 @@ class EditProfile extends Component {
 
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
+
+      const skillCSV = profile.skills.join(",");
+      profile.company = !isEmpty(profile.company) ? profile.company : "";
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : "";
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : "";
+      profile.social = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
+      profile.social = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : "";
+      profile.social = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : "";
+      profile.social = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : "";
+
+      // Set State
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: profile.skills,
+        gihubusername: profile.githubusername,
+        bio: profile.bio,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        linkedin: profile.linkedin,
+        youtube: profile.youtube,
+        instagram: profile.instagram
+      });
     }
   }
   onSubmit(e) {
