@@ -34,10 +34,10 @@ const TextFieldGroup = ({
 TextFieldGroup.propTypes = {
   name: propTypes.string.isRequired,
   placeholder: propTypes.string.isRequired,
-  value: propTypes.string.isRequired,
+  value: propTypes.string,
   info: propTypes.string.isRequired,
-  error: propTypes.string.isRequired,
-  type: propTypes.string.isRequired,
+  error: propTypes.string,
+  type: propTypes.string,
   onChange: propTypes.func.isRequired,
   disabled: propTypes.string
 };

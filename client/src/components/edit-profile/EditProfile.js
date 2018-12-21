@@ -6,9 +6,9 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import { createProfile } from "../../actions/profileActions";
+import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +35,10 @@ class CreateProfile extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
     }
   }
   onSubmit(e) {
@@ -127,7 +131,10 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Your Profile</h1>
+              <h1 className="display-4 text-center">Create Your Profile</h1>
+              <p className="lead text-center">
+                Lets get some information to make your profile stand out
+              </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -223,8 +230,10 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   profile: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -235,5 +244,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile }
-)(withRouter(CreateProfile));
+  { createProfile, getCurrentProfile }
+)(withRouter(EditProfile));

@@ -27,10 +27,9 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
 };
 SelectListGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   info: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
+  error: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired
 };

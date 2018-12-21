@@ -8,7 +8,7 @@ module.exports = function validateProfileInput(data) {
   data.skills = !isEmpty(data.skills) ? data.skills : "";
 
   if (!validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.password = "Handle must be between 2 and 40 characters.";
+    errors.handle = "Handle must be between 2 and 40 characters.";
   }
 
   if (validator.isEmpty(data.handle)) {
