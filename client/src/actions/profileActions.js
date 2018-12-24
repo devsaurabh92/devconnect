@@ -37,7 +37,19 @@ export const setProfileLoading = () => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/profile", profileData)
-    .then(rest => history.push("/dashboard"))
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+//Add Experience
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post("/api/profile/experience", expData)
+    .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -46,7 +58,55 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
-//Create profile
+//Delete Experience
+export const deleteExperience = id => dispatch => {
+  axios
+    .delete(`/api/profile/experience/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//Delete Experience
+export const deleteEducation = id => dispatch => {
+  axios
+    .delete(`/api/profile/education/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//Add Education
+export const addEducation = (eduData, history) => dispatch => {
+  axios
+    .post("/api/profile/education", eduData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+//Delete profile
 export const deleteAcount = () => dispatch => {
   axios
     .delete("/api/profile")

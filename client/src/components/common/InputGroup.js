@@ -35,10 +35,10 @@ const InputGroup = ({
 InputGroup.propTypes = {
   name: propTypes.string.isRequired,
   placeholder: propTypes.string.isRequired,
-  value: propTypes.string.isRequired,
+  value: propTypes.string,
   icon: propTypes.string,
   error: propTypes.string,
-  type: propTypes.string.isRequired,
+  type: propTypes.string,
   onChange: propTypes.func.isRequired
 };
 
