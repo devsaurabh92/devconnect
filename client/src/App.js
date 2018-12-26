@@ -23,6 +23,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 
 import { clearCurrentProfile } from "./actions/profileActions";
+import NotFound from "./components/not-found/NotFound";
 
 //const store = createStore(() => [], {}, applyMiddleware());
 //check Token
@@ -92,6 +93,7 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>
