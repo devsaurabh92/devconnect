@@ -22,6 +22,7 @@ class ProfileGithub extends Component {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(typeof data);
         if (this.refs.myRef) {
           this.setState({
             repos: data
@@ -32,31 +33,37 @@ class ProfileGithub extends Component {
   }
   render() {
     const { repos } = this.state;
-    const repoItems = repos.map(repo => (
-      <div key={repo.id} className="card card-body mb-4">
-        <div className="row">
-          <div className="col-md-6">
-            <h1>
-              <Link to={repo.html_url} className="text-info" target="_blank">
-                {repo.name}
-              </Link>
-            </h1>
-            <p>{repo.description}</p>
-          </div>
-          <div>
-            <span className="badge badge-info mr-1">
-              Stars:{repo.stargazers_count}
-            </span>
-            <span className="badge badge-secondary mr-1">
-              Watcher:{repo.watchers_count}
-            </span>
-            <span className="badge badge-success">
-              Stars:{repo.forks_count}
-            </span>
+    let repoItems;
+    if(typeof repos == 'object'){
+      repoItems = <h3>Data Not Found For This Username</h3>
+    }else{
+      repoItems = repos.map(repo => (
+        <div key={repo.id} className="card card-body mb-4">
+          <div className="row">
+            <div className="col-md-6">
+              <h1>
+                <Link to={repo.html_url} className="text-info" target="_blank">
+                  {repo.name}
+                </Link>
+              </h1>
+              <p>{repo.description}</p>
+            </div>
+            <div>
+              <span className="badge badge-info mr-1">
+                Stars:{repo.stargazers_count}
+              </span>
+              <span className="badge badge-secondary mr-1">
+                Watcher:{repo.watchers_count}
+              </span>
+              <span className="badge badge-success">
+                Stars:{repo.forks_count}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    ));
+      ));
+    }
+     
     return (
       <div ref="myRef">
         <hr />

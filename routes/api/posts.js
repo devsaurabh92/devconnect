@@ -94,8 +94,7 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.id)
         .then(post => {
-          //console.log(req.user.id);
-          // console.log(post.like.filter(like => like.user.toString === req.user.id));
+          //console.log(post);
           if (post.like.filter(like => like.user == req.user.id).length > 0) {
             return res
               .status(400)
