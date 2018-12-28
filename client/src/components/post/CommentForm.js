@@ -24,7 +24,7 @@ class CommentForm extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log("submit");
+    //console.log("submit");
     const { user } = this.props.auth;
     const { postId } = this.props;
     const commentData = {
@@ -70,7 +70,7 @@ CommentForm.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  addPost: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

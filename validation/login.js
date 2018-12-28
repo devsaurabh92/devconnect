@@ -21,7 +21,7 @@ module.exports = function validateLoginInput(data) {
   }
 
   //console.log({ errors, isValid: isEmpty(errors) });
-  console.log(errors);
+  //console.log(errors);
   return {
     errors,
     isValid: isEmpty(errors)

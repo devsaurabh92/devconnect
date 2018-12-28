@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
     case GET_SINGLE_POST:
       return {
         ...state,
-        posts: action.payload,
+        post: action.payload,
         loading: false
       };
     case DELETE_POST:

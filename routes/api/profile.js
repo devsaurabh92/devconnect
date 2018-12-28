@@ -136,7 +136,7 @@ router.post(
         //update
         console.log(profile);
         console.log(req.user.id);
-        Profile.findByIdAndUpdate(
+        Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }

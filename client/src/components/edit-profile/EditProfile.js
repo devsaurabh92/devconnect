@@ -55,16 +55,16 @@ class EditProfile extends Component {
       profile.twitter = !isEmpty(profile.social.twitter)
         ? profile.social.twitter
         : "";
-      profile.social = !isEmpty(profile.social.facebook)
+      profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : "";
-      profile.social = !isEmpty(profile.social.linkedin)
+      profile.linkedin = !isEmpty(profile.social.linkedin)
         ? profile.social.linkedin
         : "";
-      profile.social = !isEmpty(profile.social.youtube)
+      profile.youtube = !isEmpty(profile.social.youtube)
         ? profile.social.youtube
         : "";
-      profile.social = !isEmpty(profile.social.instagram)
+      profile.instagram = !isEmpty(profile.social.instagram)
         ? profile.social.instagram
         : "";
 
@@ -104,7 +104,7 @@ class EditProfile extends Component {
       instagram: this.state.instagram
     };
     this.props.createProfile(profileData, this.props.history);
-    console.log("submit");
+    //console.log("submit");
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });

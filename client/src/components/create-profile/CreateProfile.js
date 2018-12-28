@@ -55,7 +55,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
     this.props.createProfile(profileData, this.props.history);
-    console.log("submit");
+    //console.log("submit");
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
