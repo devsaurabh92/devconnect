@@ -39,7 +39,7 @@ class EditProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
+    console.log(nextProps);
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
